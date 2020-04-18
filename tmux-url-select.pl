@@ -9,18 +9,18 @@ use warnings;
 
 ### config
 
-use constant COMMAND => 'xdg-open %s';
-use constant YANK_COMMAND => 'echo %s | xclip -i';
+use constant COMMAND               => 'qutebrowser %s';
+use constant YANK_COMMAND          => 'echo %s | xclip -i';
 
-use constant SHOW_STATUS_BAR => 1;
-use constant VERBOSE_MESSAGES => 0;
-use constant TMUX_WINDOW_TITLE => 'Select URL';
-use constant TMUX_WINDOW_ID => 9999;
-use constant HIDE_WINDOW => 1;
+use constant SHOW_STATUS_BAR       => 1;
+use constant VERBOSE_MESSAGES      => 0;
+use constant TMUX_WINDOW_TITLE     => 'Select URL';
+use constant TMUX_WINDOW_ID        => 9999;
+use constant HIDE_WINDOW           => 1;
 
-use constant PROMPT_COLOR => "\033[42;30m";
-use constant ACTIVE_LINK_HIGHLIGHT => "\033[44;4m";
-use constant NORMAL_LINK_HIGHLIGHT => "\033[94;1;4m";
+use constant PROMPT_COLOR          => "\033[1;7;33m";
+use constant ACTIVE_LINK_HIGHLIGHT => "\033[1;3;4;38:5:231;48:5:235m";
+use constant NORMAL_LINK_HIGHLIGHT => "\033[38:5:245;48:5:235m";
 
 # other options:
 # - blue background, underlined: \033[44;4m
@@ -52,7 +52,7 @@ sub clear {
 
 sub display_status_bar {
     my $is_first_line = shift;
-    my $position = $is_first_line ? "2;2" : "1;2";
+    my $position = $is_first_line ? "2;2" : "1;1";
     print sprintf("\033[%sH%s URL select: (%s/%s) [j/k/y/o/q/enter] \033[0m", $position, PROMPT_COLOR, $selection+1, $match_count);
 }
 
